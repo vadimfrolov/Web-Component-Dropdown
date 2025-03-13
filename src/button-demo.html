@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Button Component</title>
+    <script type="module" src="./test-button.js"></script>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Arial, sans-serif;
+        margin: 2rem;
+        line-height: 1.5;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .demo-section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+
+      .code-block {
+        background-color: #f5f5f5;
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        font-family: monospace;
+        margin: 1rem 0;
+      }
+
+      h1 {
+        color: #333;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 0.5rem;
+      }
+
+      h2 {
+        color: #555;
+      }
+
+      .examples {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Test Button Component</h1>
+
+      <div class="demo-section">
+        <h2>Custom Message</h2>
+        <p>Customize the test message:</p>
+        <div class="code-block">
+          &lt;test-button message="Hello from custom
+          test!"&gt;&lt;/test-button&gt;
+        </div>
+        <div class="examples">
+          <test-button message="Hello from custom test!"></test-button>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      document
+        .getElementById("create-js-button")
+        .addEventListener("click", () => {
+          const container = document.getElementById("js-button-container");
+
+          container.innerHTML = "";
+
+          const button = document.createElement("test-button");
+          button.message = "Created via JavaScript!";
+          button.buttonText = "JS Button";
+
+          container.appendChild(button);
+        });
+    </script>
+  </body>
+</html>
