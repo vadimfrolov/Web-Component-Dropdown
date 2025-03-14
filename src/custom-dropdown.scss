@@ -3,6 +3,10 @@ $border-color: rgba(0, 0, 0, 0.1);
 $arrow-color: #000000;
 $hover-color: rgba(0, 0, 0, 0.1);
 $padding-standard: 8px 16px;
+$button-bg-color: #f8f8f8;
+$button-hover-bg: #f0f0f0;
+$border-radius: 4px;
+$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
 :host {
   display: block;
@@ -19,26 +23,38 @@ $padding-standard: 8px 16px;
 
 .select-selected {
   padding: $padding-standard;
-  border: 1px solid transparent;
-  border-color: transparent transparent $border-color transparent;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background-color: $button-bg-color;
   cursor: pointer;
   user-select: none;
+  box-shadow: $box-shadow;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: $button-hover-bg;
+  }
   
   &:after {
     position: absolute;
     content: "";
-    top: 14px;
-    right: 10px;
+    top: 50%;
+    right: 14px;
     width: 0;
     height: 0;
     border: 6px solid transparent;
     border-color: $arrow-color transparent transparent transparent;
+    transform: translateY(-25%);
   }
   
   &.select-arrow-active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
+    
     &:after {
       border-color: transparent transparent $arrow-color transparent;
-      top: 7px;
+      transform: translateY(-75%);
     }
   }
 }
@@ -50,13 +66,21 @@ $padding-standard: 8px 16px;
   right: 0;
   z-index: 99;
   background-color: white;
+  border: 1px solid $border-color;
+  border-top: none;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  box-shadow: $box-shadow;
   
   div {
     padding: $padding-standard;
-    border: 1px solid transparent;
-    border-color: transparent transparent $border-color transparent;
     cursor: pointer;
     user-select: none;
+    border-bottom: 1px solid $border-color;
+    
+    &:last-child {
+      border-bottom: none;
+    }
     
     &:hover {
       background-color: $hover-color;
