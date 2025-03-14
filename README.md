@@ -8,7 +8,7 @@ A lightweight, customizable dropdown component built using Web Components. This 
 ## Features
 
 - 🎨 Different color variants
-- 📱 Optional menu alliggnment
+- 📱 Optional menu Alignment 
 
 ## API
 
