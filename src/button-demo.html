@@ -1,73 +1,98 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="module" src="../dist/custom-dropdown.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    
-    .dropdown-container {
-      margin-bottom: 30px;
-    }
-    
-    h2 {
-      margin-bottom: 10px;
-    }
-    
-    .selection-result {
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #f5f5f5;
-      border-radius: 4px;
-    }
-  </style>
-</head>
-<body>
-  <div class="dropdown-container">
-    <h2>Default Movie Selection</h2>
-    <custom-dropdown id="dropdown1" width="300px" placeholder="Select movie:"></custom-dropdown>
-    <div class="selection-result" id="result1">No movie selected</div>
-  </div>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="../dist/custom-dropdown.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
 
-  <div class="dropdown-container">
-    <h2>Preselected Movie (The Godfather)</h2>
-    <custom-dropdown id="dropdown2" width="300px" selectedIndex="3" placeholder="Select movie:"></custom-dropdown>
-    <div class="selection-result" id="result2">Currently selected: The Godfather</div>
-  </div>
+      .dropdown-container {
+        margin-bottom: 30px;
+      }
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const movieOptions = [
-        { value: '1', label: 'Pulp fiction' },
-        { value: '2', label: 'The Dark Knight' },
-        { value: '3', label: 'The Godfather' },
-        { value: '4', label: 'The Shawshank Redemption' },
-        { value: '5', label: 'The Lord of the Rings: The Return of the King' },
-        { value: '6', label: '12 Angry Men' },
-        { value: '7', label: 'The Matrix' },
-        { value: '8', label: 'The Silence of the Lambs' },
-        { value: '9', label: 'The Green Mile' },
-      ];
+      h2 {
+        margin-bottom: 10px;
+      }
 
-      const dropdown1 = document.getElementById('dropdown1');
-      const result1 = document.getElementById('result1');
-      dropdown1.options = movieOptions;
-      dropdown1.addEventListener('change', (e) => {
-        result1.textContent = `Selected: ${e.detail.option.label}`;
-        console.log('Dropdown 1 selected:', e.detail.option);
+      .selection-result {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dropdown-container">
+      <h2>Default Movie Selection</h2>
+      <custom-dropdown
+        id="dropdown1"
+        width="300px"
+        options='[
+    {"value":"1","label":"Pulp fiction"},
+    {"value":"2","label":"The Dark Knight"},
+    {"value":"3","label":"The Godfather"},
+    {"value":"4","label":"The Shawshank Redemption"},
+    {"value":"5","label":"The Lord of the Rings: The Return of the King"},
+    {"value":"6","label":"12 Angry Men"},
+    {"value":"7","label":"The Matrix"},
+    {"value":"8","label":"The Silence of the Lambs"},
+    {"value":"9","label":"The Green Mile"}
+  ]'
+        placeholder="Select movie:"
+      ></custom-dropdown>
+      <div class="selection-result" id="result1">No movie selected</div>
+    </div>
+
+    <div class="dropdown-container">
+      <h2>Preselected Movie (The Godfather)</h2>
+      <custom-dropdown
+        id="dropdown2"
+        width="300px"
+        selectedIndex="3"
+        placeholder="Select movie:"
+      ></custom-dropdown>
+      <div class="selection-result" id="result2">
+        Currently selected: The Godfather
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const movieOptions = [
+          { value: "1", label: "Pulp fiction" },
+          { value: "2", label: "The Dark Knight" },
+          { value: "3", label: "The Godfather" },
+          { value: "4", label: "The Shawshank Redemption" },
+          {
+            value: "5",
+            label: "The Lord of the Rings: The Return of the King",
+          },
+          { value: "6", label: "12 Angry Men" },
+          { value: "7", label: "The Matrix" },
+          { value: "8", label: "The Silence of the Lambs" },
+          { value: "9", label: "The Green Mile" },
+        ];
+
+        const dropdown1 = document.getElementById("dropdown1");
+        const result1 = document.getElementById("result1");
+        // dropdown1.options = movieOptions;
+        dropdown1.addEventListener("change", (e) => {
+          result1.textContent = `Selected: ${e.detail.option.label}`;
+          console.log("Dropdown 1 selected:", e.detail.option);
+        });
+
+        const dropdown2 = document.getElementById("dropdown2");
+        const result2 = document.getElementById("result2");
+        dropdown2.options = movieOptions;
+        dropdown2.addEventListener("change", (e) => {
+          result2.textContent = `Selected: ${e.detail.option.label}`;
+          console.log("Dropdown 2 selected:", e.detail.option);
+        });
       });
-
-      const dropdown2 = document.getElementById('dropdown2');
-      const result2 = document.getElementById('result2');
-      dropdown2.options = movieOptions;
-      dropdown2.addEventListener('change', (e) => {
-        result2.textContent = `Selected: ${e.detail.option.label}`;
-        console.log('Dropdown 2 selected:', e.detail.option);
-      });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
