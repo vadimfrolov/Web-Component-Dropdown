@@ -1,5 +1,8 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { styleMap } from 'lit/directives/style-map.js';
+// Import raw SCSS content and process with unsafeCSS
+import styles from './custom-dropdown.scss';
 
 export interface DropdownOption {
   value: string;
@@ -43,72 +46,11 @@ export class CustomDropdown extends LitElement {
   @state() 
   private isOpen = false;
 
-  static styles = css`
-    :host {
-      display: block;
-    }
-    
-    .custom-select {
-      position: relative;
-      font-family: Arial;
-    }
-
-    .custom-select select {
-      display: none;
-    }
-
-    .select-selected {
-      padding: 8px 16px;
-      border: 1px solid transparent;
-      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-      cursor: pointer;
-      user-select: none;
-    }
-    
-    .select-selected:after {
-      position: absolute;
-      content: "";
-      top: 14px;
-      right: 10px;
-      width: 0;
-      height: 0;
-      border: 6px solid transparent;
-      border-color: #000000 transparent transparent transparent;
-    }
-    
-    .select-selected.select-arrow-active:after {
-      border-color: transparent transparent #000000 transparent;
-      top: 7px;
-    }
-    
-    .select-items {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      z-index: 99;
-    }
-    
-    .select-items div {
-      padding: 8px 16px;
-      border: 1px solid transparent;
-      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-      cursor: pointer;
-      user-select: none;
-    }
-    
-    .select-hide {
-      display: none;
-    }
-    
-    .select-items div:hover, .same-as-selected {
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-  `;
+  static styles = css`${unsafeCSS(styles)}`;
 
   render() {
     return html`
-      <div class="custom-select" style="width: ${this.width};">
+      <div class="custom-select" style=${styleMap({ width: this.width })}>
         <div 
           class="select-selected ${this.isOpen ? 'select-arrow-active' : ''}"
           @click="${this._toggleDropdown}"

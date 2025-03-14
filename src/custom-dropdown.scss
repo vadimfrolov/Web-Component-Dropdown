@@ -1,0 +1,73 @@
+// Variables
+$border-color: rgba(0, 0, 0, 0.1);
+$arrow-color: #000000;
+$hover-color: rgba(0, 0, 0, 0.1);
+$padding-standard: 8px 16px;
+
+:host {
+  display: block;
+}
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  
+  select {
+    display: none;
+  }
+}
+
+.select-selected {
+  padding: $padding-standard;
+  border: 1px solid transparent;
+  border-color: transparent transparent $border-color transparent;
+  cursor: pointer;
+  user-select: none;
+  
+  &:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: $arrow-color transparent transparent transparent;
+  }
+  
+  &.select-arrow-active {
+    &:after {
+      border-color: transparent transparent $arrow-color transparent;
+      top: 7px;
+    }
+  }
+}
+
+.select-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: white;
+  
+  div {
+    padding: $padding-standard;
+    border: 1px solid transparent;
+    border-color: transparent transparent $border-color transparent;
+    cursor: pointer;
+    user-select: none;
+    
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+}
+
+.select-hide {
+  display: none;
+}
+
+.same-as-selected {
+  background-color: $hover-color;
+}
