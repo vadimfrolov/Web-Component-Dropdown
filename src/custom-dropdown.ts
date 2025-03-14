@@ -41,6 +41,12 @@ export class CustomDropdown extends LitElement {
   placeholder = 'Select an option';
 
   /**
+   * Alignment of the dropdown options (left or right)
+   */
+  @property({ type: String }) 
+  optionsAlign: 'left' | 'right' = 'left';
+
+  /**
    * Whether the dropdown is currently open
    */
   @state() 
@@ -59,7 +65,7 @@ export class CustomDropdown extends LitElement {
             ? this.placeholder 
             : this.options[this.selectedIndex - 1].label}
         </div>
-        <div class="select-items ${this.isOpen ? '' : 'select-hide'}">
+        <div class="select-items ${this.isOpen ? '' : 'select-hide'} ${this.optionsAlign === 'left' ? 'align-left' : 'align-right'}">
           ${this.options.map((option, index) => html`
             <div
               class="${this.selectedIndex === index + 1 ? 'same-as-selected' : ''}"

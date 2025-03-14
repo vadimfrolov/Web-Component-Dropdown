@@ -85,7 +85,7 @@ const t={ATTRIBUTE:1},e=t=>(...e)=>({_$litDirective$:t,values:e});let i$1 = clas
  * SPDX-License-Identifier: BSD-3-Clause
  */const n="important",i=" !"+n,o=e(class extends i$1{constructor(t$1){if(super(t$1),t$1.type!==t.ATTRIBUTE||"style"!==t$1.name||t$1.strings?.length>2)throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.")}render(t){return Object.keys(t).reduce(((e,r)=>{const s=t[r];return null==s?e:e+`${r=r.includes("-")?r:r.replace(/(?:^(webkit|moz|ms|o)|)(?=[A-Z])/g,"-$&").toLowerCase()}:${s};`}),"")}update(e,[r]){const{style:s}=e.element;if(void 0===this.ft)return this.ft=new Set(Object.keys(r)),this.render(r);for(const t of this.ft)null==r[t]&&(this.ft.delete(t),t.includes("-")?s.removeProperty(t):s[t]=null);for(const t in r){const e=r[t];if(null!=e){this.ft.add(t);const r="string"==typeof e&&e.endsWith(i);t.includes("-")||r?s.setProperty(t,r?e.slice(0,-11):e,r?n:""):s[t]=e;}}return T}});
 
-var styles = ":host{display:block}.custom-select{position:relative;font-family:Arial}.custom-select select{display:none}.select-selected{padding:8px 16px;border:1px solid rgba(0,0,0,.1);border-radius:4px;background-color:#f8f8f8;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.1);transition:all .2s ease}.select-selected:hover{background-color:#f0f0f0}.select-selected:after{position:absolute;content:\"\";top:50%;right:14px;width:0;height:0;border:6px solid rgba(0,0,0,0);border-color:#000 rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0);transform:translateY(-25%)}.select-selected.select-arrow-active{border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:rgba(0,0,0,0)}.select-selected.select-arrow-active:after{border-color:rgba(0,0,0,0) rgba(0,0,0,0) #000 rgba(0,0,0,0);transform:translateY(-75%)}.select-items{position:absolute;top:100%;left:0;right:0;z-index:99;background-color:#fff;border:1px solid rgba(0,0,0,.1);border-top:none;border-bottom-left-radius:4px;border-bottom-right-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.1)}.select-items div{padding:8px 16px;cursor:pointer;user-select:none;border-bottom:1px solid rgba(0,0,0,.1)}.select-items div:last-child{border-bottom:none}.select-items div:hover{background-color:rgba(0,0,0,.1)}.select-hide{display:none}.same-as-selected{background-color:rgba(0,0,0,.1)}";
+var styles = ":host{display:block}.custom-select{position:relative;font-family:Arial}.custom-select select{display:none}.select-selected{padding:8px 16px;border:1px solid rgba(0,0,0,.1);border-radius:4px;background-color:#f8f8f8;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.1);transition:all .2s ease}.select-selected:hover{background-color:#f0f0f0}.select-selected:after{position:absolute;content:\"\";top:50%;right:14px;width:0;height:0;border:6px solid rgba(0,0,0,0);border-color:#000 rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0);transform:translateY(-25%)}.select-selected.select-arrow-active{border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:rgba(0,0,0,0)}.select-selected.select-arrow-active:after{border-color:rgba(0,0,0,0) rgba(0,0,0,0) #000 rgba(0,0,0,0);transform:translateY(-75%)}.select-items{position:absolute;top:100%;left:0;right:0;z-index:99;background-color:#fff;border:1px solid rgba(0,0,0,.1);border-top:none;border-bottom-left-radius:4px;border-bottom-right-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.1)}.select-items.align-left{width:150px;left:0;right:auto}.select-items.align-right{width:150px;right:0;left:auto}.select-items div{padding:8px 16px;cursor:pointer;user-select:none;border-bottom:1px solid rgba(0,0,0,.1)}.select-items div:last-child{border-bottom:none}.select-items div:hover{background-color:rgba(0,0,0,.1)}.select-hide{display:none}.same-as-selected{background-color:rgba(0,0,0,.1)}";
 
 /**
  * Custom dropdown component that replaces the native select element
@@ -104,7 +104,7 @@ let CustomDropdown = class CustomDropdown extends r$2 {
             ? this.placeholder
             : this.options[this.selectedIndex - 1].label}
         </div>
-        <div class="select-items ${this.isOpen ? '' : 'select-hide'}">
+        <div class="select-items ${this.isOpen ? '' : 'select-hide'} ${this.optionsAlign === 'left' ? 'align-left' : 'align-right'}">
           ${this.options.map((option, index) => x `
             <div
               class="${this.selectedIndex === index + 1 ? 'same-as-selected' : ''}"
@@ -135,6 +135,10 @@ let CustomDropdown = class CustomDropdown extends r$2 {
          * Label for when no option is selected
          */
         this.placeholder = 'Select an option';
+        /**
+         * Alignment of the dropdown options (left or right)
+         */
+        this.optionsAlign = 'left';
         /**
          * Whether the dropdown is currently open
          */
@@ -199,6 +203,9 @@ __decorate([
 __decorate([
     n$1({ type: String })
 ], CustomDropdown.prototype, "placeholder", void 0);
+__decorate([
+    n$1({ type: String })
+], CustomDropdown.prototype, "optionsAlign", void 0);
 __decorate([
     r()
 ], CustomDropdown.prototype, "isOpen", void 0);

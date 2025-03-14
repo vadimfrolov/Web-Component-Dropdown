@@ -72,6 +72,18 @@ $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-bottom-right-radius: $border-radius;
   box-shadow: $box-shadow;
   
+  &.align-left {
+    width: 150px;
+    left: 0;
+    right: auto;
+  }
+  
+  &.align-right {
+    width: 150px;
+    right: 0;
+    left: auto;
+  }
+  
   div {
     padding: $padding-standard;
     cursor: pointer;
