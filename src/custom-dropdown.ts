@@ -1,7 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
-// Import raw SCSS content and process with unsafeCSS
 import styles from './custom-dropdown.scss';
 
 export interface DropdownOption {
@@ -61,7 +60,6 @@ export class CustomDropdown extends LitElement {
   static styles = css`${unsafeCSS(styles)}`;
 
   render() {
-    // Determine alignment class based on optionsAlign property
     let alignmentClass = '';
     if (this.optionsAlign === 'left') {
       alignmentClass = 'align-left';
@@ -95,7 +93,6 @@ export class CustomDropdown extends LitElement {
 
   constructor() {
     super();
-    // Set up global event listener for handling dropdown coordination
     document.addEventListener('dropdown-opened', ((e: CustomEvent) => {
       if (e.detail.source !== this) {
         this.isOpen = false;
@@ -118,7 +115,6 @@ export class CustomDropdown extends LitElement {
     this.isOpen = !this.isOpen;
     
     if (this.isOpen) {
-      // Close all other dropdowns when this one opens
       document.dispatchEvent(new CustomEvent('dropdown-opened', {
         bubbles: true,
         composed: true,
@@ -143,7 +139,6 @@ export class CustomDropdown extends LitElement {
   }
 
   private _closeAllSelect = (e: MouseEvent) => {
-    // Close if clicked outside this element
     if (!this.contains(e.target as Node)) {
       this.isOpen = false;
     }

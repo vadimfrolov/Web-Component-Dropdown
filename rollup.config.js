@@ -14,7 +14,6 @@ export default {
     typescript(),
     resolve(),
     scss({
-      // Use modern Sass API instead of legacy one
       processor: () => require('sass'),
       outputStyle: 'compressed'
     }),

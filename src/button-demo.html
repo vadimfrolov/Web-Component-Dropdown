@@ -187,7 +187,6 @@
 
         const dropdown1 = document.getElementById("dropdown1");
         const result1 = document.getElementById("result1");
-        // dropdown1.options = movieOptions;
         dropdown1.addEventListener("change", (e) => {
           result1.textContent = `Selected: ${e.detail.option.label}`;
           console.log("Dropdown 1 selected:", e.detail.option);
@@ -207,7 +206,6 @@
         const dropdown4 = document.getElementById("dropdown4");
         dropdown4.options = movieOptions;
         
-        // Setup variant dropdowns
         const variantIds = [
           "variant-primary", 
           "variant-secondary", 

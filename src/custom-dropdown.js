@@ -59,12 +59,10 @@ let CustomDropdown = class CustomDropdown extends LitElement {
          */
         this.isOpen = false;
         this._closeAllSelect = (e) => {
-            // Close if clicked outside this element
             if (!this.contains(e.target)) {
                 this.isOpen = false;
             }
         };
-        // Set up global event listener for handling dropdown coordination
         document.addEventListener('dropdown-opened', ((e) => {
             if (e.detail.source !== this) {
                 this.isOpen = false;
@@ -83,7 +81,6 @@ let CustomDropdown = class CustomDropdown extends LitElement {
         e.stopPropagation();
         this.isOpen = !this.isOpen;
         if (this.isOpen) {
-            // Close all other dropdowns when this one opens
             document.dispatchEvent(new CustomEvent('dropdown-opened', {
                 bubbles: true,
                 composed: true,
@@ -186,4 +183,3 @@ CustomDropdown = __decorate([
     customElement('custom-dropdown')
 ], CustomDropdown);
 export { CustomDropdown };
-//# sourceMappingURL=custom-dropdown.js.map

@@ -94,7 +94,6 @@ var styles = ":host{display:block}.custom-select{position:relative;font-family:A
  */
 let CustomDropdown = class CustomDropdown extends r$2 {
     render() {
-        // Determine alignment class based on optionsAlign property
         let alignmentClass = '';
         if (this.optionsAlign === 'left') {
             alignmentClass = 'align-left';
@@ -156,12 +155,10 @@ let CustomDropdown = class CustomDropdown extends r$2 {
          */
         this.isOpen = false;
         this._closeAllSelect = (e) => {
-            // Close if clicked outside this element
             if (!this.contains(e.target)) {
                 this.isOpen = false;
             }
         };
-        // Set up global event listener for handling dropdown coordination
         document.addEventListener('dropdown-opened', ((e) => {
             if (e.detail.source !== this) {
                 this.isOpen = false;
@@ -180,7 +177,6 @@ let CustomDropdown = class CustomDropdown extends r$2 {
         e.stopPropagation();
         this.isOpen = !this.isOpen;
         if (this.isOpen) {
-            // Close all other dropdowns when this one opens
             document.dispatchEvent(new CustomEvent('dropdown-opened', {
                 bubbles: true,
                 composed: true,
