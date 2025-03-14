@@ -59,6 +59,36 @@ $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 }
 
+// Variant styles
+.select-selected.variant-primary {
+  background-color: $button-bg-color;
+}
+
+.select-selected.variant-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.select-selected.variant-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.select-selected.variant-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.select-selected.variant-warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.select-selected.variant-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
 .select-items {
   position: absolute;
   top: 100%;

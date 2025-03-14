@@ -44,7 +44,13 @@ export class CustomDropdown extends LitElement {
    * Alignment of the dropdown options (left or right)
    */
   @property({ type: String }) 
-  optionsAlign: 'left' | 'right' = 'left';
+  optionsAlign: 'left' | 'right' | undefined = undefined;
+
+  /**
+   * Color variant of the dropdown
+   */
+  @property({ type: String }) 
+  variant: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' = 'primary';
 
   /**
    * Whether the dropdown is currently open
@@ -55,17 +61,25 @@ export class CustomDropdown extends LitElement {
   static styles = css`${unsafeCSS(styles)}`;
 
   render() {
+    // Determine alignment class based on optionsAlign property
+    let alignmentClass = '';
+    if (this.optionsAlign === 'left') {
+      alignmentClass = 'align-left';
+    } else if (this.optionsAlign === 'right') {
+      alignmentClass = 'align-right';
+    }
+    
     return html`
       <div class="custom-select" style=${styleMap({ width: this.width })}>
         <div 
-          class="select-selected ${this.isOpen ? 'select-arrow-active' : ''}"
+          class="select-selected ${this.isOpen ? 'select-arrow-active' : ''} variant-${this.variant}"
           @click="${this._toggleDropdown}"
         >
           ${this.selectedIndex === 0 
             ? this.placeholder 
             : this.options[this.selectedIndex - 1].label}
         </div>
-        <div class="select-items ${this.isOpen ? '' : 'select-hide'} ${this.optionsAlign === 'left' ? 'align-left' : 'align-right'}">
+        <div class="select-items ${this.isOpen ? '' : 'select-hide'} ${alignmentClass}">
           ${this.options.map((option, index) => html`
             <div
               class="${this.selectedIndex === index + 1 ? 'same-as-selected' : ''}"
