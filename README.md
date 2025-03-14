@@ -2,6 +2,9 @@
 
 A lightweight, customizable dropdown component built using Web Components. This custom element can be used in any web application regardless of the framework.
 
+![image](https://github.com/user-attachments/assets/f07552aa-d900-4946-bfea-7d84ad0d0c58)
+
+
 ## Features
 
 - 🎨 Different color variants
